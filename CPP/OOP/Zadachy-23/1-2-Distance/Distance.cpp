@@ -3,39 +3,38 @@
 #include <cmath>
 #include <iomanip> 
 
-class Points{
+class Point{
     public:
+    int x, y;
     double EuclideanDistance;
-    Points(std::istream& iStr);
-    void calculateEuclideanDistance(int &x1, int &x2, int &y1, int &y2);
+    Point(std::istream& iStr);
+    void calculateEuclideanDistance(Point & other);
     void print();
 
 };
 
-Points::Points(std::istream& iStr){
-    int x1, x2, y1, y2;
+Point::Point(std::istream& iStr){
     std::string line;
     getline(iStr, line);
     std::istringstream iss1(line);
-    iss1 >> x1 >> y1;
-    getline(iStr, line);
-    std::istringstream iss2(line);
-    iss2 >> x2 >> y2;
-    calculateEuclideanDistance(x1, x2, y1, y2);
+    iss1 >> x >> y;
 }
 
-void Points::calculateEuclideanDistance(int &x1, int &x2, int &y1, int &y2){
-    EuclideanDistance = sqrt(pow((x2 - x1),2) + pow((y2 - y1),2));
+void Point::calculateEuclideanDistance(Point & other){
+    EuclideanDistance = sqrt(pow((this->x - other.x),2) + pow((this->y - other.y),2));
     print();
 };
 
-void Points::print(){
+void Point::print(){
     std::cout << std::fixed << std::setprecision(3) <<EuclideanDistance << std::endl;
 }
 
 int main(){
+ 
+Point one(std::cin);
+Point two(std::cin);
 
-Points getPoints(std::cin);
+one.calculateEuclideanDistance(two);
 
 return 0;
 }

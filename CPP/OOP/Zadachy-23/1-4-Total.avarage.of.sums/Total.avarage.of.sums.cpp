@@ -1,35 +1,41 @@
-/*Write a program, use a class that has params:
-- Student Name
-- Student Surname
-- Total Average
-The class should have print method that for a given object prints all the information.
-Create a vector in main() that for a given number (passed thru user) saves the objects
-Make a function that calculates the Total average of all students.
-If there are no students, print “Invalid input”.
-Explanation:
-Number of students – 2
-Name – Maria
-Surname – Ivanova
-Average – 3.5
-Name – Dragan
-© SoftUni – about.softuni.bg. Copyrighted document. Unauthorized copy, reproduction or use is not permitted.
-Follow us:
-Page 2 of 6Surname – Ivanov
-Average – 4.5
-TOTAL AVERAGE – (3.5 + 4.5) / 2 = 4
+#include <iostream>
+#include <sstream>
+#include <vector>
 
-Input:
+class Student{
+    public:
+    std::string name;
+    std::string surName;
+    double totalAvarage;
+    Student(std::string name, std::string surName, double totalAvarage) : name(name), surName(surName), totalAvarage(totalAvarage) {}
 
-2
-Maria
-Ivanova
-3.5
-Dragan
-Ivanov
-4.5
+    void print(std::ostream &oStr);
+};
 
-Ouput:
-Maria Ivanova 3.5
-Dragan Ivanov 4.5
-4
-*/
+   void Student::print(std::ostream &oStr) {
+    oStr << this->name << " " << this->surName << " " << totalAvarage << '\n';
+   }
+
+
+int main() {
+    std::vector<Student> students;
+    int count;
+    double totalAvarageSum;
+    std::cin >> count;
+    if(count<= 0) {
+        std::cout << "Invalid input" << std::endl;
+        return 0;
+    }
+    std::string name;
+    std::string surName;
+    double totalAvarage;
+    for(int i = 0; i < count;i++) {
+    std::cin >> name>> surName>>totalAvarage;
+    totalAvarageSum += totalAvarage;
+    Student buf(name, surName, totalAvarage);
+    buf.print(std::cout);
+    students.push_back(buf);
+    }
+    std::cout<<totalAvarageSum/count<<std::endl;
+    return 0;
+}
