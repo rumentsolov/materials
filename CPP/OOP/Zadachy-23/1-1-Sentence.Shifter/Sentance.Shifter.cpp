@@ -1,27 +1,56 @@
+#include <iostream>
+#include <sstream>
+#include <vector>
+
+class Sentance {
+
+    public:
+    std::vector<std::string> sentences;
+    int shifter;
+    Sentance(std::istream &iStr);
+    void shift();
+    void print(std::ostream & oStr);
+    
+};
+
+void Sentance::print(std::ostream & oStr) {
+    for(auto i : sentences) {
+        oStr << i << std::endl;
+    }
+}
+
+void Sentance::shift() {
+    for(int i = 0; i < shifter;i++) {
+        std::vector<std::string>::iterator it = sentences.begin();
+        sentences.insert(it, sentences[sentences.size()-1]);
+        sentences.pop_back();
+    }
+
+    print(std::cout);
+}
 
 
+Sentance::Sentance(std::istream &iStr) {
+    std::string buf;
+    getline(iStr, buf);
 
-/*
-You are given a list of words in one line. On the other line, you are given a simple integer.
-Your role is to shift the words in the sentence according to that integer.
-For an example, if a sentence has 10 words and you receive a shift number 2 - the first word should become the
-third, the second word should become the fourth and so on, ..., the word before the last should become the first
-and the last word should become the second.
-Implement this task with a class that is initialized with a linear container (array, vector, etc.) of words and which has
-a getShiftedSentence() method which returns the words shifted.
-Each word is printed on a different line.
+    std::istringstream iss(buf);
+    while(iss >> buf) {
+        sentences.push_back(buf);
+    }
+    getline(iStr, buf);
+    std::istringstream iss2(buf);
+    iss2 >> shifter;
 
-Input:
-Welcome to SoftUni and have fun learning programming
-2
+    shift();
+}
 
-Output:
-learning
-programming
-Welcome
-to
-SoftUni
-and
-have
-fun
-*/
+
+int main(){
+
+    Sentance sent(std:: cin);
+    
+    
+
+    return 0;
+}
