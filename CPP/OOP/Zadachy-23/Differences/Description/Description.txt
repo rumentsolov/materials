@@ -1,0 +1,25 @@
+Differences
+You are given code for a program that compares the populations of City objects (name, population, year of population census). For each pair of cities, it subtracts the population of the second city from the population of the first city, indicating by how many people the first city is larger than the second city.
+Some City pairs in the input are censuses for the same city (e.g. New York in 1900 had a population of 3437202 and in 2013 it has a population of 8550405).
+When printing information about the differences, each city pair is printed as two lines – the first describing the cities being compared and the census dates, and the second describing the difference in population, where non-negative values are printed with a prefix "population: +", and negative values with prefix "population: -". 
+The format for the first line of each comparison is:
+    • CityName1 (censusYear) vs. CityName2 (censusYear) if the cities are different, e.g. "Washington (2011) vs. New York (2013)"
+    • CityName (censusYear1 vs. censusYear2) if the city is the same, e.g. "New York (1900 vs. 2013)"
+The provided code does not have the comparison logic, nor operators for reading City objects from the input – your task is to implement them, and any other code necessary to accomplish the task described. The provided code includes a file, which is not part of the provided code, named Includes.h – use that to insert your code into the provided code.
+You should submit a single .zip file for this task, containing ONLY the files you created. 
+The Judge system has a copy of the other files and will compile them, along with your file, in the same directory.
+Restrictions
+City names will be strings of letters from the English alphabet, without any whitespaces, digits or other symbols.
+There will be no more than 5 comparisons in the input.
+Examples
+Input / Output
+
+2
+Sofia 2000000 2018 Sofia 1291591 2011
+Gabrovo 54950 2015 NewYork 8550405 2013
+
+Sofia (2018 vs. 2011)
+population: +708409
+Gabrovo (2015) vs. NewYork (2013)
+population: -8495455
+

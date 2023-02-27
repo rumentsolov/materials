@@ -1,0 +1,22 @@
+Census
+You are given code for a program that reads information about City objects (name, population), orders prints them in order of their population and calculates the total population (the sum of the populations of each City).
+The provided code uses two functions, named initCity and groupByPopulation, to create cities and group them in increasing order of their population (in this case each "group" will be exactly 1 City).
+You should submit a single .zip file for this task, containing ONLY the files you created. 
+The Judge system has a copy of the other files and will compile them, along with your file, in the same directory.
+Restrictions
+The provided code handles input and output.
+No two cities will have an equal population. 
+City names will be strings of letters from the English alphabet, without any whitespaces, digits or other symbols.
+There will be no more than 10 cities in the input.
+Examples
+Input
+Output
+3
+Sofia 1291591
+Gabrovo 54950
+NewYork 8550405
+Gabrovo 54950
+Sofia 1291591
+NewYork 8550405
+total: 9896946
+
