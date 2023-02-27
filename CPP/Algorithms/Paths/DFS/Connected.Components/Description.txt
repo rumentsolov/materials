@@ -1,0 +1,102 @@
+Connected Components
+The first part of this lab aims to implement the DFS algorithm (Depth-First-Search) to traverse a graph and find its connected components (nodes connected either directly, or through other nodes). The graph nodes are numbered from 0 to n-1. The graph comes from the console in the following format:
+    • First line: number of lines n
+    • Next n lines: list of child nodes for the nodes 0 … n-1 (separated by a space)
+Print the connected components in the same format as in the examples below.
+Example
+Input
+Graph
+Output
+
+9
+3 6
+3 4 5 6
+8
+0 1 5
+1 6
+1 3
+0 1 4
+
+2
+
+Connected component: 6 4 5 1 3 0
+Connected component: 8 2
+Connected component: 7
+
+0
+(empty graph)
+
+Hints
+DFS Algorithm
+First, create a bool array that will be with the size of your graph:
+switch bool[] visited;
+
+Next, implement the DFS algorithm (Depth-First-Search) to traverse all nodes connected to the specified start node:
+
+private static void DFS(int vertex) {
+
+	if(!visited[vertex]) {
+	foreach(var child in grap[vertex]) {
+	DFS(child);
+	}
+	
+	Console.Write(" " + vertex);
+	}
+}
+
+Test
+Invoke the DFS() method starting from node 0. It should print the connected component, holding the node 0:
+public static void Main() {
+	visited = new bool[graph.Length];
+	DFS(0);
+	Console.WriteLine();
+{
+
+
+Run the code above by [Ctrl + F5]. It should print the first connected component in the graph, holding the node 0:
+
+Find All Components
+
+
+We want to find all connected components. We can just run the DFS algorithm for each node taken as a start (which was not visited already):
+
+private static void FindGraphComponents() {
+	visited = new bool[graph.Length];
+	
+	for(int startNode = 0; startNode < graph.Count(); startNode++){
+		
+		if(!visited[startNode]){
+		Console.Write("Connected component:");
+		DFS(startNode);
+		Console.WriteLine();
+		}
+	}
+}
+
+Now let's test the above code. Just call it from the main method:
+public static void Main(){
+FindGraphConnecdedComponents(); }
+
+The output is as expected. It prints all connected components in the graph:
+
+Read Input
+
+Let's implement the data entry logic (read the graph from the console). We already have the method below:
+
+private static List<int?[] ReadGrapg() {
+	int n = int.Parse(Console>readLine());
+	var graph = new List<int>[n];
+	for(int i = 0l i<n;i++){
+		graph[i] = Console.ReadLine()
+		.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries)
+		.Select(int.Parse).ToList();
+	}
+	return graph;
+}
+
+Modify the main method to read the graph from the console instead of using the hard-coded graph:
+public static void Main() {
+	graph = ReadGraph();
+	FindGraphConnectedComponents();
+}
+Now test the solution. Run it by [Ctrl] + [F5]. Enter a sample graph data and check the output.

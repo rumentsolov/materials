@@ -1,0 +1,51 @@
+Sum of Coins
+Write a program, which receives a set of coins and a target sum. The goal is to reach the sum using as few coins as possible. You should use a greedy approach. 
+Constraints
+    • We’ll assume that each coin value and the desired sum are integers. 
+Output
+    • If the target sum can be reached:
+        ◦ First, print the number of used coins in the following format: "Number of coins to take: {coins}".
+        ◦ For each used coin print its value and how many times has been used in the following format: "{counter} coin(s) with value {coinValue}".
+    • Otherwise, print "Error".
+Examples
+Input / Output
+
+1, 2, 5, 10, 20, 50
+923
+Number of coins to take: 21
+18 coin(s) with value 50
+1 coin(s) with value 20
+1 coin(s) with value 2
+1 coin(s) with value 1
+Comments : 18*50 + 1*20 + 1*2 + 1*1 = 900 + 20 + 2 + 1 = 923
+
+3, 7
+11
+Error
+Comments : Cannot reach desired sum with these coin values
+
+
+Greedy Approach
+For this problem, a greedy algorithm will attempt to take the best possible coin value (which is the largest), then take the next largest coin value, and so on, until the sum is reached or there are no coin values left. There may be a different amount of coins to take for each value
+Greedy Algorithm Implementation
+Since at each step we’ll try to take the largest value we haven’t yet tried, it would simplify our work to order the coin values in descending order. 
+We can use LINQ:
+
+Now taking the largest coin value at each step is simply a matter of iterating the list.
+We’ll need several variables to keep track of:
+    • We’ll be iterating a list, so we also need to know where we’re at – an index variable. 
+    • We will need a variable to keep track count of used coins.
+
+Having these variables, when do we stop taking coins? 
+There are two possibilities:
+    1) We reached the desired sum.
+    2) We ran out of coin values.
+We can put these two conditions in a while loop like this:
+
+In the while loop, we need to decide how many coins to take of the current value. We take the current value from the list, we have its index, and move the index to the next one:
+
+So, how many coins do we take? Using integer division, we can just divide target over the currentCoin to find out:
+
+If the result of the division is greater than zero then we have to increase the count of used coins and reduce the target by the result of currentCoin * coinsCount:
+
+Finally, the last step is to take care of output, but this is something that you can do on your own.

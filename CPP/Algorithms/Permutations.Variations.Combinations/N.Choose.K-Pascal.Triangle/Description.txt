@@ -1,0 +1,12 @@
+N Choose K Count
+Given a n and k, calculate the number of possible n choose k combinations (without repetition).
+Examples
+Input
+Output
+3
+2
+3
+5
+3
+10
+

@@ -1,0 +1,56 @@
+Longest Common Subsequence
+Considering two sequences S1 and S2, the longest common subsequence is a sequence that is a subsequence of both S1 and S2. For instance, if we have two strings (sequences of characters), "abc" and "adb", the LCS is "ab" – it is a subsequence of both sequences and it is the longest (there are two other subsequences – "a" and "b").
+Input
+    • On the first line, you will receive a string – str1 – first string.
+    • On the second line, you will receive a string – str2 – second string.
+Output
+    • Print the length of the longest common subsequence.
+Examples
+Input / Output
+
+abc
+adb
+
+2
+
+ink some beer
+drink se ber
+
+10
+
+tree
+team
+
+2
+
+Solution
+Dynamic Programming Approach
+Just like the LIS problem, we can solve the LCS problem by solving sub-problems and keeping track of the solutions to the sub-problems (memoization). In the LIS problem, we used an array, but here we’ll be comparing two sequences, therefore, we’ll need a matrix like the one below:
+
+
+The rows will represent subsequences (substrings) of the first string ("tree"); the first row will represent a substring with length 0 (an empty string), and the second row will represent a substring of length 1 ("t"), the third row will represent a substring of length 2 ("tr"), etc. The last row will represent a substring of length 4 which is the entire string "tree".
+The columns will represent the substrings of the second string ("team"), again starting with an empty string and ending with the entire string.
+In each cell, we’ll enter the length of the LCS of the two substrings – the substring of the first string (the rows) and the second string (the columns). E.g., in the table above, cells (2, 2) will represent the LCS of "tr" and "te". Note that we assume that an empty string does not have anything in common with any other string, therefore row 0 and column 0 will be filled with zeros.
+Find the LCS for Every Combination of Substrings
+We know what to do – create a matrix of integers and calculate the LCS length for each cell. Let’s begin.
+The matrix should have 1 more row than the number of characters in the first string and 1 more column than the number of characters in the second string (the first row and column are the empty substrings). Therefore:
+
+Now, we must iterate each cell of lcs[][] from top to bottom and from left to right and decide what number to put in that cell. Remember, at each step, we already have the results from previous steps, so we can build on that. We have two distinct cases: 
+    1) The last character of the first substring is equal to the last character of the second substring.
+This means that, compared to the cell which is to the left and up of the current one, the length of the current cell’s LCS is greater by 1. Why? The cell to the left and up of the current one will hold the LCS of two substrings which are shorter by 1 than the current substrings; basically, the last character (which is the same) won’t be present. Adding that same character to both substrings, we’ll obtain the current cell and an LCS greater by 1.
+    2) The last character of the first substring is different from the last character of the second substring.
+We know the LCS of all substrings is shorter than the current ones. The longest LCS so far should be one of two – the one directly above or the one directly to the left of the current cell. Adding a character to one of the substrings used to calculate these two LCSs doesn’t have any effect, therefore, the current cell’s LCS is the larger of the two.
+Complete the if-statement following the logic above:
+
+
+Once done, the matrix should be filled with the length of each LCS, like so:
+
+
+
+Once the table is filled, all we need to do is recover what we need from it. Let’s do this in a separate method,
+We iterate the matrix starting from the bottom-right corner until we reach row 0 or column 0. We’ll fill the characters in a List<char>.
+Again, we have two distinct cases:
+    1) The last characters of the two substrings are the same – add the character to the list and move to the cell which is to the left and above the current one. The logic is the same as the one we used to fill the matrix.
+    2) The characters are different – we need to decide where to go next – up or left. We go to the cell which has the same LCS length as the current one (if both have the same length, it doesn’t matter).
+
+Finally, since we obtained all the characters in reversed order, we need to reverse the list and return it as a string.

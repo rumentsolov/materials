@@ -1,0 +1,35 @@
+/*Write a program, use a class that has params:
+- Student Name
+- Student Surname
+- Total Average
+The class should have print method that for a given object prints all the information.
+Create a vector in main() that for a given number (passed thru user) saves the objects
+Make a function that calculates the Total average of all students.
+If there are no students, print “Invalid input”.
+Explanation:
+Number of students – 2
+Name – Maria
+Surname – Ivanova
+Average – 3.5
+Name – Dragan
+© SoftUni – about.softuni.bg. Copyrighted document. Unauthorized copy, reproduction or use is not permitted.
+Follow us:
+Page 2 of 6Surname – Ivanov
+Average – 4.5
+TOTAL AVERAGE – (3.5 + 4.5) / 2 = 4
+
+Input:
+
+2
+Maria
+Ivanova
+3.5
+Dragan
+Ivanov
+4.5
+
+Ouput:
+Maria Ivanova 3.5
+Dragan Ivanov 4.5
+4
+*/

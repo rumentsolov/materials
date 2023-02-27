@@ -1,0 +1,30 @@
+Judge.
+Binomial Coefficients
+Write a program that finds the binomial coefficient  for given non-negative integers n and k. The coefficient can be found recursively by adding the two numbers above using the formula: 
+
+However, this leads to calculating the same coefficient multiple times (a problem that also occurs when solving the Fibonacci problem recursively). Use memoization to improve performance.
+You can check your answers using the picture below (row and column indices start from 0):
+
+Examples
+Input / Output
+
+3
+2
+
+3
+
+4
+0
+
+1
+
+6
+2
+
+15
+
+49
+10
+
+8217822536
+

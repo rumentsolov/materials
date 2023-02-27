@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace CS_Algorithms
+{
+    public class Program
+    {
+       public static void Main()
+        {
+            var num = int.Parse(Console.ReadLine());
+
+            Console.WriteLine(GetFactorial(num));
+        }
+
+        private static long GetFactorial(int num)
+        {
+            if (num == 0)
+                return 1;
+
+            return num * GetFactorial(num - 1);
+        }
+
+
+    }
+}

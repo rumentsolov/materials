@@ -1,0 +1,79 @@
+Hardware Store
+You are given 4 files: main.cpp, Hardware.h, Laptop.h and Store.h.
+You are given the main() function, which reads a single integer value of memory (N).
+    • The next N lines are special command strings;
+    • “buy” command – creates new Laptop in the Hardware Store;
+    • “remove” command – removes a Laptop from a given INDEX from the Hardware Store (provided indexes will always be valid);
+    • “copy” command – copies the data from one index to another index in the Hardware Store; 
+Your task is to study the provided Skeleton and implement the missing functionalities for Store.cpp and Laptop.cpp files;
+For Store.cpp – you should implement the missing functions.
+For Laptop.cpp – you should implement everything required from the Laptop.h file with few things in mind;
+    • At the end of the constructor you should call printInfo() followed by printing “ is being created” and a newline;
+    • At the end of the destructor you should call printInfo() followed by printing “ is being destroyed” and a newline;
+    • At the end of the copy-constructor you should print “Copy construction for ” followed by a call to  printInfo() and a newline;
+    • At the end of the copy-assignment operator you should print “Copy assignment for ” followed by a call to  printInfo() and a newline;
+    • If a self-copy is detected you should print “Self-copy prevented for ” followed by a call to  printInfo() and a newline;
+
+Important hint: 
+Remember what happens to a std::vector’s elements when it is constantly growing with call to .push_back()/.emplace_back().  
+Also remember what happens to a std::vector’s elements when an element is deleted from an index, which is not the last.
+Last but, not least remember what happens to a std::vector’s elements, when the vector is being destoyed.
+
+
+Example: 
+3 commands:
+    • buy Acer 1200.14 15.6
+    • copy 0 0
+    • remove 0
+output: 
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being created
+Self-copy prevented for Model: Acer, price: 1200.14, monitorSize: 15.6
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being destroyed
+
+Your task is to study the code and implement the function so that the code accomplishes the task described.
+You should submit a single .zip file for this task, containing ONLY the files you created. 
+The Judge system has a copy of the other files and will compile them, along with your file, in the same directory.
+
+Restrictions
+There are no restrictions.
+
+Examples
+Input 
+Output
+2
+buy Acer 1200.14 15.6
+remove 0
+
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being created
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being destroyed
+
+3
+buy Acer 1200.14 15.6
+buy Toshiba 902.87 17.2
+remove 1
+
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being created
+Model: Toshiba, price: 902.87, monitorSize: 17.2 is being created
+Copy construction for Model: Acer, price: 1200.14, monitorSize: 15.6
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being destroyed
+Model: Toshiba, price: 902.87, monitorSize: 17.2 is being destroyed
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being destroyed
+
+5
+buy Acer 1200.14 15.6
+buy Toshiba 902.87 17.2
+copy 1 1
+copy 1 0
+remove 0
+
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being created
+Model: Toshiba, price: 902.87, monitorSize: 17.2 is being created
+Copy construction for Model: Acer, price: 1200.14, monitorSize: 15.6
+Model: Acer, price: 1200.14, monitorSize: 15.6 is being destroyed
+Self-copy prevented for Model: Toshiba, price: 902.87, monitorSize: 17.2
+Copy assignment for Model: Toshiba, price: 902.87, monitorSize: 17.2
+Copy assignment for Model: Toshiba, price: 902.87, monitorSize: 17.2
+Model: Toshiba, price: 902.87, monitorSize: 17.2 is being destroyed
+Model: Toshiba, price: 902.87, monitorSize: 17.2 is being destroyed
+
+

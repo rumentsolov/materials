@@ -1,0 +1,40 @@
+The Story Telling
+There is always a story. It's all stories. The sun coming up every day is a story. Everything’s got a story in it. Change the story, change the world.
+The greatest storyteller of all time needs your help. He has his stories, however, they got all mixed up his storytelling needs to be in the correct order and you need to fix that order. You will be given the stories in the following format on a single line until the command "End" is received.
+{preStory} -> {postStory1} {postStory2} {postStoryn-1}
+You have to read the stories data and then print the stories in the correct order according to the description above. Keep in mind that the structure above represents relation in which any story can be preStory or postStory in different input lines.
+Input
+The input will come from the console:
+    • On a single line, the input in the above format until the "End" command is received.
+Output
+    • On a single line print, the stories in the correct order separated by spaces
+    • The output priority, if there are more than one stories without pre story, should be in the order of the input
+Constraints
+    • All stories will be valid and also can contain any ASCII symbol except space
+    • The input will always end with "End" line
+    
+Examples
+
+Input / Output
+Mort -> Time Space
+Time -> Future Robot
+Space -> Metro
+Future -> Space Metro
+Robot -> Future
+Metro ->
+End
+
+Mort Time Robot Future Space Metro
+
+By -> The
+Story -> The Told
+Told -> Narrator
+The -> Narrator Ever Greatest
+Narrator ->
+Some -> Told Ever
+Greatest ->
+Ever ->
+End
+
+Some Story Told By The Greatest Ever Narrator
+

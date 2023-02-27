@@ -1,0 +1,27 @@
+Two Minutes to Midnight
+Well, it is dark outside and many unnatural creatures dwell in the dark. There is nothing more fearsome than Midnight and you have only two minutes.
+You are on an adventure and you have found yourself stuck in front of a great challenge. There is a door blocking your path it will unlock after you have guessed the correct number which is the answer to the following riddle:
+In how many ways can you select the loot inside the treasure room, given that you have N items and you can only pick K of those?
+So you need to develop a program that produces a single number as an output.
+You receive two numbers first one represents the number of items, and the second one represents the number of those that you can get.
+Hurry up!!! You have only two minutes and then Midnight will be upon your will.
+Input
+    • The input will come from the console on two lines each line will represent a single number
+Output
+    • The output is always a single number.
+Constraints
+    • All input lines will be valid the first number will always be not less than the second.
+    • The input will be in the range [1…1000]
+Examples
+Input / Output
+5
+3
+
+10
+
+48
+17
+
+4244421484512
+
+

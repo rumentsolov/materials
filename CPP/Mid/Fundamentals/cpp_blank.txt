@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <cmath>
+#include <math.h> 
+#include <limits.h>>
+#include <cstdlib> // random
+#include <algorithm>
+#include <iomanip> // clock
+#include <array>
+#include <cctype>
+#include <list>
+
+int main() {
+
+	return 0;
+}

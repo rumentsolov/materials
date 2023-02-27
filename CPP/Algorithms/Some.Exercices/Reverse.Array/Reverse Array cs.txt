@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace CS_Algorithms
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            var elements = Console.ReadLine().Split();
+
+            Reverse(elements, 0);
+
+            Console.WriteLine(string.Join(" ", elements));
+        }
+
+        private static void Reverse ( string[] elements, int i)
+        {
+            int end = elements.Length / 2;
+            if (i == end) return;
+
+            var tmp = elements[i];
+            elements[i] = elements[elements.Length - i - 1];
+            elements[elements.Length - i - 1] = tmp;
+
+            Reverse(elements, i + 1);
+        }
+    }
+}

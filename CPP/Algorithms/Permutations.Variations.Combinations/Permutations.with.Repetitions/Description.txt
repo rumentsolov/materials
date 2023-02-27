@@ -1,0 +1,11 @@
+Permutations with Repetitions
+Given a multi-set of elements, find all permutations.
+Examples
+Input / Output
+
+A B B
+
+A B B
+B A B
+B B A
+

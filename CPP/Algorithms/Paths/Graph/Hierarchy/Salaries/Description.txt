@@ -1,0 +1,49 @@
+Judge.
+Salaries
+We have a hierarchy between the employees in a company. 
+Employees can have one or several direct managers. People who manage nobody are called regular employees and their salaries are 1. People who manage at least one employee are called managers. Each manager takes a salary which is equal to the sum of the salaries of their directly managed employees. 
+Managers cannot manage directly or indirectly themselves. Some employees might have no manager. See a sample hierarchy in a company along with the salaries computed following the above-described rule:
+
+In the above example, employees 0 and 3 are regular employees and take salary 1. All others are managers and take the sum of the salaries of their directly managed employees. For example, manager 1 takes salary 3 + 2 + 1 = 6 (sum of the salaries of employees 2, 5 and 0). In the above example employees, 4 and 1 have no manager.
+If we have N employees, they will be indexed from 0 to N – 1. For each employee, you will be given a string with N symbols. The symbols are either 'Y' or 'N', showing all employees that are managed by the current employee.
+Input
+    • On the first line, you will be given an integer N.
+    • On the next N lines, you will be given strings with N symbols (either 'Y' or 'N').
+    • The input data will always be valid and in the format described. There is no need to check it explicitly.
+Output
+    • Print the sum of the salaries of all employees.
+Constraints
+    • N will be an integer in the range [1 … 50].
+    • If employee A is the manager of employee B, B will not be a manager of A.
+Examples
+Input / Output
+
+1
+N
+
+1
+Comments : Only 1 employee with salary 1.
+
+4
+NNYN
+NNYN
+NNNN
+NYYN
+
+5
+Comments: We have 4 employees. 0, 1, and 3 are managers of 2. 3 is also a manager of 1. Therefore:
+salary(2) = 1
+salary(0) = salary(2) = 1
+salary(1) = salary(2) = 1
+salary(3) = salary(2) + salary(1) = 2
+
+6
+NNNNNN
+YNYNNY
+YNNNNY
+NNNNNN
+YNYNNN
+YNNYNN
+17
+
+

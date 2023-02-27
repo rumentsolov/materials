@@ -1,0 +1,30 @@
+Generating 0/1 Vectors
+Generate all n-bit vectors of 0 and 1 in lexicographic order.
+Examples
+Input
+Output
+3
+000
+001
+010
+011
+100
+101
+110
+111
+5
+00000
+00001
+00010
+…
+11110
+11111
+Hints
+    • The method should receive as parameters the array which will be our vector and an index.
+    • The bottom of the recursion should be when the index is outside of the vector.
+    • To generate all combinations, create a for loop with a recursive call:
+    for(int i =0; i<=1 ; i++){
+    	arr[index] = i;
+    	Gen01(arr,index:index +1)
+    	}
+

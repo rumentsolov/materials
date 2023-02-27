@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
+
+namespace CS_Algorithms
+{
+    internal class Program
+    {
+        private static List<double> arrived;
+        private static List<double> departed;
+        static void Main(String[] args)
+        {
+
+/*
+2.00 2.10 3.00 3.20 3.50 5.00
+2.30 3.40 3.20 4.30 4.00 5.20
+
+
+14.00 14.10 00.40 14.10 1.50
+14.50 14.40 23.50 14.20 2.00
+*/
+
+            List<double> arrived = new List<double>();
+
+            string[] darray1 = Console.ReadLine().Split(separator: " ", StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < darray1.Length; i++) arrived.Add((double)Convert.ToDouble(darray1[i]));
+
+            List<double> departed = new List<double>();
+
+            string[] darray2 = Console.ReadLine().Split(separator: " ", StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < darray2.Length; i++) departed.Add((double)Convert.ToDouble(darray2[i]));
+
+
+            //Print(arrived);
+            //Print(departed);
+
+            Console.WriteLine(findMax(arrived, departed));
+        }
+
+        public static int findMax(List<double> arrived, List<double> departed)
+        {
+            int counter = 0;
+            int max = 0;
+            for (int i = 1; i < arrived.Count; i++)
+            {
+               if(arrived[i] < departed[i-1])
+                {
+                    counter++;
+                    if (counter > max) max = counter;
+                }
+                else
+                {
+                    counter--;
+                }
+            }
+            return max;
+        }
+        private static void Print(List<double> hours)
+        {
+            for(int i = 0; i < hours.Count; i++)
+            {
+                Console.Write($" { hours[i]}");
+            }
+        }
+
+
+    }
+}
+
+

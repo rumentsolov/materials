@@ -1,0 +1,26 @@
+Recursive Drawing
+Write a program that draws the figure below depending on n.
+Examples
+Input
+Output
+2
+**
+*
+#
+##
+5
+*****
+****
+***
+**
+*
+#
+##
+###
+####
+#####
+Hints
+    • Set the bottom of the recursion:
+
+    • Define pre and post recursive behavior:
+

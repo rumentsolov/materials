@@ -1,0 +1,68 @@
+Binary Search
+Implement an algorithm that finds the index of an element in a sorted array of integers in logarithmic time.
+Examples
+Input
+Output
+Comments
+
+Input
+1 2 3 4 5
+1
+
+Output
+0
+
+Comments
+Index of 1 is 0
+
+Input
+-1 0 1 2 4
+1
+
+Output
+2
+
+Comment
+Index of 1 is 2
+
+
+Hints
+First, if you’re not familiar with the concept, read about binary search in Wikipedia.
+In short, if we have a sorted collection of comparable elements, instead of doing a linear search (which takes linear time), we can eliminate half the elements at each step and finish in logarithmic time. Binary search is a divide-and-conquer algorithm; we start at the middle of the collection, if we haven’t found the element there, there are three possibilities: 
+    • The element we’re looking for is smaller – then look to the left of the current element, we know all elements to the right are larger.
+    • The element we’re looking for is larger – look to the right of the current element.
+    • The element is not present, traditionally, return -1 in that case.
+    
+Start by defining a method:
+
+public static int BinarySearch(int[] arr, int key) { return -1; }
+
+Inside the method, define two variables defining the bounds to be searched and a while loop:
+
+public static int BinarySearch(int[], int key) {
+var left = 0;
+var right:int = arr.Length -1;
+
+	while(left<=right) { 
+	//TODO 
+	}
+
+return -1;
+}
+
+Inside the while loop, we need to find the midpoint:
+
+var mid:int = (left+right) /2;
+
+If the key is to the left of the midpoint, move the right bound. If the key is to the right of the midpoint, move the left bound:
+
+var element:int = arr[mid];
+
+if(element== key) {
+return mid; }
+
+if(key>element) {
+left = mid+1; }
+else {
+right = mid-1; }
+

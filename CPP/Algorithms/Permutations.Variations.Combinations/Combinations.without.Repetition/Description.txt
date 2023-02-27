@@ -1,0 +1,13 @@
+Combinations without Repetition
+Given a set of elements, generate all combinations of k elements without repetition.
+Examples
+Input
+Output
+
+A B C
+2
+
+A B
+A C
+B C
+

@@ -1,0 +1,8 @@
+Merge Sort
+Sort an array of elements using the famous merge sort.
+Examples
+Input
+Output
+5 4 3 2 1
+1 2 3 4 5
+

@@ -1,0 +1,45 @@
+Judge.
+Minimum Edit Distance
+We have two strings, s1 and s2. The goal is to obtain s2 from s1 by applying the following operations:
+    • replace(i, x) – in s1, replace the symbol at index  with the character x
+    • insert(i, x) – in s1, inserts the character x at index i
+    • delete(i) – from s1, remove the character at index i
+We are only allowed to modify s1, s2 always stays unchanged. Each of the three operations has a certain cost associated with it (positive integer number). 
+Note: the cost of the replace(i, x) operation is 0 if it does not change the character.
+The goal is to find the sequence of operations which will produce s2 from s1 with minimal cost.
+Input
+    • The input consists of five lines.
+    • The first line is the replacement cost.
+    • The second line is the insert cost.
+    • The third line is the delete cost. 
+    • After that on the next two lines are the two strings s1 and s2.
+Examples
+Input / Output
+ 
+3
+2
+1
+abracadabra
+mabragabra
+
+Minimum edit distance: 7
+Comments:
+Indices refer to the original s1 string – DELETE(3) deletes the symbol at index 3 from abracadabra, not from the modified string mabracadabra after the INSERT(0, m) operation.
+
+3
+3
+3
+equal
+equal
+
+Minimum edit distance: 0
+
+1
+1
+1
+equal
+different
+
+Minimum edit distance: 8
+
+

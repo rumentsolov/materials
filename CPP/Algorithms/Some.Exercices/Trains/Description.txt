@@ -1,0 +1,29 @@
+
+Please submit your solutions (source code) to all below-described problems in Judge.
+    1. Trains
+As a promising tinker, you are part of Dick Simnel’s locomotion scheduler team.
+Given a schedule containing the arrival and departure time of trains in a station, find the minimum number of platforms needed to avoid delay in any train’s arrival.
+    1. Input
+    • The input will come from the console on two lines:
+        ◦ The first line will be a sequence of numbers representing the train arrival times.
+        ◦ The second line will be a sequence of numbers representing the train departure times.
+    2. Output
+    • The output is a single integer representing the minimum number of platforms, so no trains are delayed.
+    3. Constraints
+    • The input numbers will be valid floating-point numbers representing 24h clock system as an example
+[1.30, 14.20, 6.50, 4.20] etc.
+    • When two trains are scheduled to arrive and depart simultaneously, depart the train first.
+    • Arrivals and departures will always be sequences with equal length.
+    4. Examples
+Input / Output
+
+2.00 2.10 3.00 3.20 3.50 5.00
+2.30 3.40 3.20 4.30 4.00 5.20
+
+2
+
+14.00 14.10 00.40 14.10 1.50
+14.50 14.40 23.50 14.20 2.00
+
+4
+

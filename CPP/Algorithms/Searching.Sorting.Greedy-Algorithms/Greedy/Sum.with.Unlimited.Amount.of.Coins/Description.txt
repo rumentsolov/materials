@@ -1,0 +1,43 @@
+Sum with Unlimited Amount of Coins
+We have a set of coins with predetermined values, e.g. 1, 2, 5, 10, 20, 50. Given a sum S, the task is to find how many combinations of coins will sum up to S. For each value, we can use an unlimited number of coins, e.g. we can use S coins of value 1 or S/2 coins of value 2 (if S is even), etc.
+Examples
+Input / Output
+
+1 2 3 4 6
+6
+
+10
+
+Comments:The 10 combinations are:
+6 = 6
+6 = 4 + 2
+6 = 4 + 1 + 1
+6 = 3 + 3
+6 = 3 + 2 + 1
+6 = 3 + 1 + 1 + 1
+6 = 2 + 2 + 2
+6 = 2 + 2 + 1 + 1
+6 = 2 + 1 + 1 + 1 + 1
+6 = 1 + 1 + 1 + 1 + 1 + 1
+
+1 2 5
+5
+
+4
+Comments:The 4 combinations are:
+5 = 5
+5 = 2 + 2 + 1
+5 = 2 + 1 + 1 + 1
+5 = 1 + 1 + 1 + 1 + 1
+
+1 2 5 10
+13
+
+16
+
+1 2 5 10 20 50 100
+100
+
+4563
+
+
