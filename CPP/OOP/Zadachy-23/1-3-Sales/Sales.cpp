@@ -50,7 +50,7 @@ int main() {
     } 
 
     for(auto &p: salesT){
-        std::cout<< std::fixed << std::setprecision(3)<<p.first <<" -> "<<p.second <<std::endl;
+        std::cout<< std::fixed << std::setprecision(2)<<p.first <<" -> "<<p.second <<std::endl;
     } 
 
     return 0;
