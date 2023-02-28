@@ -1,27 +1,32 @@
 #include <iostream>
 #include <sstream>
 #include <set>
+#include <vector>
+#include <map>
+#include <iomanip>
 
 class Sale{
-    public:
+    private:
     std::string town;
     std::string product;
     double      price;
     double      quantity;
     double      salesTotal;
-    
+
     public:
-    Sale(std::string town_ ,std::string product_, double price_, double quantity_){
-        this->town = town_;
-        this->product = product_;
-        this->price = price_;
-        this->quantity = quantity_;
-        this->salesTotal += (price * quantity);
+    Sale(std::string town_ ,std::string product_, double price_, double quantity_):town(town_),product(product_),price(price_),quantity(quantity_){
+        this->salesTotal = (price * quantity);
     }
+
+    std::string getTown(){return this->town;};
+    double getSales(){return this->salesTotal;};
+
+    std::string getProduct(){return this->product;};
 };
 
 int main() {
-    std::set<Sale> sales;
+    std::vector<Sale> sales;
+    
     int items;
     std::cin>>items;
 
@@ -29,15 +34,23 @@ int main() {
     std::string   product;
     double        price;
     double        quantity;
+    double        total;
+    
+    std::map<std::string, double> salesT;
 
     for(int i = 0; i<items; i++){
         std::cin>>town>>product>>price>>quantity;
         Sale sell(town, product, price, quantity);
-        sales.insert(sell);
+        sales.push_back({sell});
     } 
 
-    for(auto &p: sales){
-        std::cout<<p.town << std::endl;
+    for (Sale sale : sales)
+    {
+        salesT[sale.getTown()] += sale.getSales();
+    } 
+
+    for(auto &p: salesT){
+        std::cout<< std::fixed << std::setprecision(3)<<p.first <<" -> "<<p.second <<std::endl;
     } 
 
     return 0;

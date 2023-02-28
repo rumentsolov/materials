@@ -20,7 +20,8 @@
                 }
             ],
             "preLaunchTask": "G++",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "miDebuggerPath": "/usr/bin/gdb",
+            
         }
     ]
 }
