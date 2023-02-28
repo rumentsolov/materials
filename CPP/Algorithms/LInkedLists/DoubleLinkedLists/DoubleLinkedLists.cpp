@@ -3,7 +3,6 @@
 #include <vector>
 
 class Node{
-
     public:
     int value;
     Node* next;
@@ -32,31 +31,18 @@ Node* iterator = tail;
 }
 
 void insert_at_front(Node** head, int value){
-    
-    // create a new node with given data
-    Node* node = new Node();
+    Node* node = new Node(); // create a new node with given data
     node->value = value;
-    
-    // assign previous pointer to NULL
-    node->prev = NULL;
-    
-    // assign next pointer to the current head node
-    node->next = (*head);
-    
-    // if the list is not empty, set the current head's previous pointer to new node
-    if((*head) != NULL){
+    node->prev = NULL; // assign previous pointer to NULL
+    node->next = (*head);  // assign next pointer to the current head node
+    if((*head) != NULL) // if the list is not empty, set the current head's previous pointer to new node
         (*head)->prev = node;
-    }
     
-    // point the head to the new node
-    (*head) = node;
-    
+    (*head) = node; // point the head to the new node
     return;
-    
 }
 
 void insert_after_given_node(Node* given_node, int value){
-    
     Node* node = new Node(); // create a new node with given data
     node->value = value;
     node->next = given_node->next; // assign next pointer to next of given node
@@ -70,34 +56,20 @@ void insert_after_given_node(Node* given_node, int value){
     
 }
 
-void insert_at_end(node** head, int data){
+void insert_at_end(Node** head, int value){
     
     // create a new node with given data
-    node* new_node = new node();
-    new_node->data = data;
-    
-    // assign next pointer to NULL
-    new_node->next = NULL;
-    
-    // if linked list is empty
-    if((*head) == NULL){
-        // this is the only node in the list
-        new_node->prev = NULL;
-    }
-    
-    node* end = (*head);
-    
-    // travel to the end of the list
-    while(end->next != NULL){
+    Node* node = new Node();
+    node->value = value;
+    node->next = NULL;// assign next pointer to NULL
+    if((*head) == NULL)// if linked list is empty
+        node->prev = NULL; // this is the only node in the list
+    Node* end = (*head);
+    while(end->next != NULL)// travel to the end of the list
         end = end->next;
-    }
-    
-    // assign the new node after the end node
-    end->next = new_node;
-    
-    // assign previous of new node to the current end node
-    new_node->prev = end;
-    
+
+    end->next = node;// assign the new node after the end node
+    node->prev = end; // assign previous of new node to the current end node
     return;
     
 }
@@ -121,12 +93,11 @@ int main(){
     tail ->next = node;
     tail = node;
     */
-    printForward(head);
+
+    insert_after_given_node(head, 6); // 4 6
+    insert_at_front(&head, 7); // 7 4 6
+    insert_at_end(&head, 9); // 7 4 6 9
     //printBackward(tail);
-    insert_after_given_node(head, 6);
-    insert_at_front(&head, 7);
-
-    printForward(head);
-
+    //printForward(head);
     return 0;
 }
