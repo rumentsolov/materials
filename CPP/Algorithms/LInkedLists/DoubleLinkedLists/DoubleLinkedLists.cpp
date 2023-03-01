@@ -1,16 +1,38 @@
 #include <iostream>
-#include <sstream>
-#include <vector>
 
 class Node{
     public:
     int value;
     Node* next;
     Node* prev;
-
+    Node(int value_): value(value_) { next = NULL; prev = NULL;} // for new Node
+    Node(int value_, Node* prev_,Node* next_): value(value_), prev(prev_), next(next_) {} // for adding new Node
 };
 
-//! Iterating true the nodes Forward
+ Node * addNodeAfter(Node* node , int &input , Node* head){
+    Node* nextNode = new Node(input); 
+    // (prev)<-[node]->(next)(prev)<-[nextNode(input)]->(next)(prev)<-[]->(next)
+    nextNode->next = node->next ; 
+    node->next = nextNode; 
+    nextNode->prev = node; // assign prev pointer to the given node
+
+    if(nextNode->prev==NULL)head->prev = nextNode;
+    return nextNode; // return
+ }
+
+
+ Node * addNodeBefore(Node* node , int &input, Node* head){
+    Node* prevNode = new Node(input); 
+    // (prev)<-[node]->(next)(prev)<-[prevNode(input)]->(next)(prev)<-[]->(next)
+    
+    prevNode->prev = node->prev;
+    prevNode->next = node;
+    node->prev = prevNode;
+    
+    if(prevNode->prev==NULL)head->prev = prevNode;
+    return prevNode; // return
+ }
+
 void printForward(Node* head){
 Node* iterator = head;
     while(iterator!= NULL){
@@ -20,84 +42,33 @@ Node* iterator = head;
     std::cout << std::endl;
 }
 
-//! Iterating true the nodes Forward
-void printBackward(Node* tail){
-Node* iterator = tail;
-    while(iterator!= NULL){
-        std::cout << iterator->value << " ";
-        iterator = iterator->prev;
-    }
-    std::cout << std::endl;
-}
-
-void insert_at_front(Node** head, int value){
-    Node* node = new Node(); // create a new node with given data
-    node->value = value;
-    node->prev = NULL; // assign previous pointer to NULL
-    node->next = (*head);  // assign next pointer to the current head node
-    if((*head) != NULL) // if the list is not empty, set the current head's previous pointer to new node
-        (*head)->prev = node;
-    
-    (*head) = node; // point the head to the new node
-    return;
-}
-
-void insert_after_given_node(Node* given_node, int value){
-    Node* node = new Node(); // create a new node with given data
-    node->value = value;
-    node->next = given_node->next; // assign next pointer to next of given node
-    given_node->next = node; // assign next pointer of given node to the new node
-    node->prev = given_node; // assign previous pointer of new node to the given node
-    if(node->next != NULL){ // assign the next pointer of the node before the given node to new node
-        node->next->prev = node;
-    }
-    
-    return;
-    
-}
-
-void insert_at_end(Node** head, int value){
-    
-    // create a new node with given data
-    Node* node = new Node();
-    node->value = value;
-    node->next = NULL;// assign next pointer to NULL
-    if((*head) == NULL)// if linked list is empty
-        node->prev = NULL; // this is the only node in the list
-    Node* end = (*head);
-    while(end->next != NULL)// travel to the end of the list
-        end = end->next;
-
-    end->next = node;// assign the new node after the end node
-    node->prev = end; // assign previous of new node to the current end node
-    return;
-    
-}
-
-
 int main(){
-
    
-    //! First node creation 
-    Node* node = new Node(); // its pointer because we are dynamically changing the size of the list => we are adding a new nodes
-    node ->value = 4;
-    Node* head = node; // this is the beggining of the Linked LIST
-    Node* tail = node; // this is the end of the Linked LIST
+    int input = 7;
+    Node* head; // to keep the head of the list to be able to print it
+    Node* firstNode = new Node(input); // 
+    head = firstNode;
 
-    /*
-    //! Second node creation
-    node = new Node();
-    node ->value = 5;
-    node ->next = nullptr; 
-    node ->prev = tail;
-    tail ->next = node;
-    tail = node;
-    */
+    printForward(head);
+    input = 5;
+    Node* secondNode = addNodeAfter(firstNode , input , head);
+    printForward(head);
 
-    insert_after_given_node(head, 6); // 4 6
-    insert_at_front(&head, 7); // 7 4 6
-    insert_at_end(&head, 9); // 7 4 6 9
-    //printBackward(tail);
-    //printForward(head);
+    input = 9;
+    Node* forthNode = addNodeBefore(firstNode , input, head);
+    printForward(head);
+
+    input = 3;
+    addNodeAfter(secondNode , input, head);
+    printForward(head);
+
+    input = 1;
+    Node* thirdNode = addNodeAfter(firstNode , input, head);
+    printForward(head);
+
+    input = 4;
+    Node* fifthNode = addNodeAfter(firstNode , input, head);
+    printForward(forthNode);
+
     return 0;
 }
