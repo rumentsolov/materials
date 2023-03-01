@@ -1,74 +1,95 @@
+//Minimize the memory allocation work algorithm
+
 #include <iostream>
 
-class Node{
-    public:
-    int value;
-    Node* next;
-    Node* prev;
-    Node(int value_): value(value_) { next = NULL; prev = NULL;} // for new Node
-    Node(int value_, Node* prev_,Node* next_): value(value_), prev(prev_), next(next_) {} // for adding new Node
+class Node {
+public:
+	int data;
+	Node* next;
+	Node* prev;
+	Node(int value) : data(value) , next(NULL), prev(NULL) {}
 };
 
- Node * addNodeAfter(Node* node , int &input , Node* head){
-    Node* nextNode = new Node(input); 
-    // (prev)<-[node]->(next)(prev)<-[nextNode(input)]->(next)(prev)<-[]->(next)
-    nextNode->next = node->next ; 
-    node->next = nextNode; 
-    nextNode->prev = node; // assign prev pointer to the given node
+void insertAtHead(Node*& head, int &val) {
+	Node* newNode = new Node(val);
+	newNode->next = head;
+	newNode->prev = NULL;
+	head = newNode;
+}
 
-    if(nextNode->prev==NULL)head->prev = nextNode;
-    return nextNode; // return
- }
+void insertAfter(Node*& prevNode, int &key, int &val){
 
+	if (prevNode == NULL)  return; // Can not be NULL
 
- Node * addNodeBefore(Node* node , int &input, Node* head){
-    Node* prevNode = new Node(input); 
-    // (prev)<-[node]->(next)(prev)<-[prevNode(input)]->(next)(prev)<-[]->(next)
-    
-    prevNode->prev = node->prev;
-    prevNode->next = node;
-    node->prev = prevNode;
-    
-    if(prevNode->prev==NULL)head->prev = prevNode;
-    return prevNode; // return
- }
+		Node* newNode = new Node(val); // Allocating and put the data into the new node
+		newNode->next = prevNode->next; // Making next of newNode as next of prevNode 
+		prevNode->next = newNode; // Making the next of prevNode as newNode
+		newNode->prev = prevNode; // Making prevNode as previous of newNode *
+		if (newNode->next != NULL) newNode->next->prev = newNode; // Changing previous of newNode's nextNode
+}
 
-void printForward(Node* head){
-Node* iterator = head;
-    while(iterator!= NULL){
-        std::cout << iterator->value << " ";
-        iterator = iterator->next;
+void append(Node*& head, int &val) {
+	Node* newNode = new Node(val);
+	newNode->next = NULL; // This new node is going to be the last node, so NULL
+
+	if (head == NULL) { // if list is empty I make the new node to be head
+        newNode->prev = NULL;
+        head = newNode;
+        return;
     }
-    std::cout << std::endl;
+
+	Node* lastNode = head; // traverse till the last node
+ 	while (lastNode->next != NULL)
+        lastNode = lastNode->next;
+
+	lastNode->next = newNode; // Changing the next of last node 
+	newNode->prev = lastNode; // Making the last node as previous of newNode
 }
 
-int main(){
-   
-    int input = 7;
-    Node* head; // to keep the head of the list to be able to print it
-    Node* firstNode = new Node(input); // 
-    head = firstNode;
-
-    printForward(head);
-    input = 5;
-    Node* secondNode = addNodeAfter(firstNode , input , head);
-    printForward(head);
-
-    input = 9;
-    Node* forthNode = addNodeBefore(firstNode , input, head);
-    printForward(head);
-
-    input = 3;
-    addNodeAfter(secondNode , input, head);
-    printForward(head);
-
-    input = 1;
-    Node* thirdNode = addNodeAfter(firstNode , input, head);
-    printForward(head);
-
-    input = 4;
-    Node* fifthNode = addNodeAfter(firstNode , input, head);
-    printForward(forthNode);
-
-    return 0;
+void print(Node*& head)
+{
+	Node* temp = head;
+	while (temp != NULL) {
+		std::cout << temp->data << " ";
+		temp = temp->next;
+	}
+	std::cout << "NULL" << std::endl;
 }
+
+int getCountRecursively(Node* head)
+{
+    int count = 0; // Initialize count
+    Node* current = head; // Initialize current
+    while (current != NULL) {
+        count++;
+        current = current->next;
+    }
+    return count;
+}
+
+int main()
+{
+	Node* head = NULL; // Starting with that mpty LL
+
+    int data = 1, key = 1;
+
+	insertAtHead(head, data);
+	print(head);
+
+    data = 5;
+	append(head, data);
+	print(head);
+
+    data =7;
+	insertAfter(head, key, data);
+	print(head);
+
+    data = 9;
+    append(head, data);
+	print(head);
+
+    std::cout << "Total nodes: " << getCountRecursively(head) << std::endl;
+
+	return 0;
+}
+

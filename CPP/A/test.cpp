@@ -4,33 +4,26 @@ class Node{
     public:
     int value;
     Node* next;
-    Node* prev;
-    Node(int value_): value(value_) { next = NULL; prev = NULL;} // for new Node
-    Node(int value_, Node* prev_,Node* next_): value(value_), prev(prev_), next(next_) {} // for adding new Node
+    Node(int value_): value(value_) { next = NULL ;} // for new Node
+    Node(int value_, Node* next_): value(value_), next(next_) {} // for adding new Node
 };
 
  Node * addNodeAfter(Node* node , int &input , Node* head){
     Node* nextNode = new Node(input); 
-    // (prev)<-[node]->(next)(prev)<-[nextNode(input)]->(next)(prev)<-[]->(next)
+    //! [node](next)->[nextNode(input)]->[-](next)->
     nextNode->next = node->next ; 
     node->next = nextNode; 
-    nextNode->prev = node; // assign prev pointer to the given node
-
-    if(nextNode->prev==NULL)head->prev = nextNode;
-    return nextNode; // return
+    if(nextNode->next==NULL)head = nextNode;
+    return nextNode; 
  }
-
 
  Node * addNodeBefore(Node* node , int &input, Node* head){
     Node* prevNode = new Node(input); 
-    // (prev)<-[node]->(next)(prev)<-[prevNode(input)]->(next)(prev)<-[]->(next)
-    
-    prevNode->prev = node->prev;
-    prevNode->next = node;
-    node->prev = prevNode;
-    
-    if(prevNode->prev==NULL)head->prev = prevNode;
-    return prevNode; // return
+    //! [-](next)->[nextNode(input)]->[node](next)->
+    prevNode->next = node->next ; 
+    node->next = prevNode; 
+    if(prevNode->next==NULL)head = prevNode;
+    return prevNode; 
  }
 
 void printForward(Node* head){
@@ -68,7 +61,7 @@ int main(){
 
     input = 4;
     Node* fifthNode = addNodeAfter(firstNode , input, head);
-    printForward(forthNode);
+    printForward(head);
 
     return 0;
 }

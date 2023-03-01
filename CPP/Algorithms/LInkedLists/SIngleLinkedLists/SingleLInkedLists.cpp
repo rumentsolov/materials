@@ -1,124 +1,97 @@
+//Minimize the memory allocation work algorithm
+
 #include <iostream>
 
-class Node{
-    public:
-    int value;
-    Node* next;
-    Node(int d){
-        value = d;
-        next = NULL;
-    }
+class Node {
+public:
+	int data;
+	Node* next;
+	Node(int value) : data(value), next(NULL) {}
 };
 
+void insertAtHead(Node*& head, int &val) {
+	Node* n = new Node(val);
+	n->next = head;
+	head = n;
+}
 
-void print(Node* &head){
-	Node*temp=head;
+void insertAfter(Node*& head, int &key, int &val){
+	Node* n = new Node(val);
+	if (key == head->data) {
+		n->next = head->next;
+		head->next = n;
+		return;
+	}
 
-	while(temp!=NULL){
-		std::cout<<temp->value<<" ";
+	Node* temp = head;
+	while (temp->data != key) {
+		temp = temp->next;
+		if (temp == NULL) {
+			return;
+		}
+	}
+	n->next = temp->next;
+	temp->next = n;
+}
+
+void insertAtTail(Node*& head, int &val) {
+	Node* n = new Node(val);
+	if (head == NULL) {
+		head = n;
+		return;
+	}
+
+	Node* temp = head;
+	while (temp->next != NULL) {
 		temp = temp->next;
 	}
-	return;
+	temp->next = n;
 }
 
-void insertAtTail(Node* &head ,int d){
-    Node* n = new Node(d);
-    if(head == NULL)
-        head = n; 
-    else{
-        Node* temp = head;
+void print(Node*& head)
+{
+	Node* temp = head;
+	while (temp != NULL) {
+		std::cout << temp->data << " ";
+		temp = temp->next;
+	}
+	std::cout << "NULL" << std::endl;
+}
 
-        while(temp->next != NULL)
-        temp = temp->next;
-        
-        temp->next = n;
+int getCountRecursively(Node* head)
+{
+    int count = 0; // Initialize count
+    Node* current = head; // Initialize current
+    while (current != NULL) {
+        count++;
+        current = current->next;
     }
-    return;
+    return count;
 }
 
-void insertAtHead(Node* &head ,int d){
-	Node* n = new Node(d);
-	if(head == NULL)
-		head = n;	
-	else{
-		n->next = head;
-		head = n;
-	}
-	return;
+int main()
+{
+	Node* head = NULL; // starting with that mpty LL
+
+    int data = 1, key = 1;
+
+	insertAtHead(head, data);
+	print(head);
+
+    data = 5;
+	insertAtTail(head, data);
+	print(head);
+
+    data =7;
+	insertAfter(head, key, data);
+	print(head);
+
+    data = 9;
+    insertAtTail(head, data);
+	print(head);
+
+    std::cout << "Total nodes: " << getCountRecursively(head) << std::endl;
+
+	return 0;
 }
 
-void insertAfterNode(Node* &head, int d, int position){
-	Node* n = new Node(d);
-	if(position == 1){
-		n->next = head;
-		head = n;	
-	}
-	else{
-		Node* temp = head;
-            position = position-1;
-            while(position--)
-                temp = temp->next;
-            
-            n->next = temp->next;
-            temp->next = n;
-        }
-	return;
-}
-
-void deletionAtHead(Node* &head){
-	if(head == NULL)
-		std::cout<<"List is empty"<<std::endl;	
-	else{   
-        Node* temp = head;
-		head = temp->next;	
-        free(temp);
-        }
-	return;
-}
-
-void deletionAtTail(Node* &head){
-        if(head == NULL)
-        std::cout<<"List is empty"<<std::endl;
-        if(head->next == NULL){
-            delete head;
-            head= NULL;
-        }      
-        else{
-            Node* temp = head;
-            while((temp->next)->next != NULL)
-            temp= temp->next;
-            
-            delete(temp->next);
-            temp->next = NULL;
-        }
-    return;
-}
-
-void deletionAtOther(Node* &head, int position){
-        if(head == NULL)
-        std::cout<<"List is empty"<<std::endl;
-
-        if(position == 1){
-            delete head;
-            head = NULL;	
-        }
-        else{
-            
-            Node* t2 = head;
-            Node* t1 = head;
-            position--;
-
-            while(position--)
-                t1 = t1->next;
-            
-            t2 = t1->next->next; 
-            free(t1->net);               
-            t1->next = NULL;
-        }
-	return;
-}
-
-int main(){
-    
-    return 0;
-}
