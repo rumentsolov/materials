@@ -16,7 +16,7 @@ class Lesson {
 	std::string subject;
 	int numStudents;
 public:
-	Lesson() {
+	Lesson() { // Lesson() : lecturer() {} => Compiler calls it
 		std::cout << "Lesson default ctor BODY" << std::endl;
 	}
 };
