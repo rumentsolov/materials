@@ -2,6 +2,29 @@
 
 //! things I often forgot about...
 
+
+	class IntArray {
+	int* data;
+	int size;
+
+    public:
+    IntArray() = default; // default constructor
+
+    IntArray(const IntArray& other)  = default; // default copy constructor
+    //? assigment "=" operator causes recursions inside coppy constructor => runtume error
+	IntArray(int size) : data(new int[size]), size(size) {}
+
+    IntArray(IntArray&& other) : data(std::move(other.data)) {} // Move constructor from C++ 17
+
+	~IntArray() { delete[] this->data; } 
+
+    // NOTE: this syntax disables copy-constructing and copy-assigning objects of the class - it is intentional, because otherwise this class will have issues with memory when such copies are done
+	IntArray(const IntArray& other) = delete; // C++ 17
+	IntArray& operator=(const IntArray& other) = delete; // C++ 17
+};
+
+
+
     //! Template SWAP function : int||char||bool||double
     template<typename T>
     void Swap(T& a, T& b ) {

@@ -65,12 +65,12 @@ public:
 		this->lecturer = other.lecturer;
 		this->subject = other.subject;
 		this->numStudents = other.numStudents;
-
+		std::cout << "Lesson COPY-ASSIGN operator BODY" << std::endl;
 		return *this;
 	}
 };
 
-void printLesson(Lesson lessonCopy) {
+void printLesson(const Lesson &lessonCopy) {
 	std::cout << lessonCopy.getSubject() << std::endl
 		<< "attended by " << lessonCopy.getNumStudents() << std::endl
 		<< "lecturer: " << lessonCopy.getLecturer().getName() << " (" << lessonCopy.getLecturer().getRating() << "/10)"

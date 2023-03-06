@@ -22,8 +22,8 @@ public:
 	// NOTE: this syntax disables copy-constructing and copy-assigning objects of the class
 	// - it is intentional, because otherwise this class will have issues with memory when such copies are done
 	// - we will discuss why and how to fix this, as well as what the syntax below means in another demo
-	IntArray(const IntArray& other) = delete;
-	IntArray& operator=(const IntArray& other) = delete;
+	IntArray(const IntArray& other) = delete; // C++ 17
+	IntArray& operator=(const IntArray& other) = delete; // C++ 17
 };
 
 int main() {
