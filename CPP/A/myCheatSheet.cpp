@@ -8,26 +8,36 @@
     std:: cout<<HALF(4+2) << std::endl; // prints 5
     #undef  HALF
     }
-   
-	class IntArray {
+
+
+    class IntArray {
 	int* data;
 	int size;
+        public:
 
-    public:
-    IntArray() = default; // default constructor
+            IntArray() = default; // default constructor
 
-    IntArray(const IntArray& other)  = default; // default copy constructor
-    //? assigment "=" operator causes recursions inside coppy constructor => runtume error
-	IntArray(int size) : data(new int[size]), size(size) {}
+            //IntArray(const IntArray& other)  = default; // default copy constructor
 
-    IntArray(IntArray&& other) : data(std::move(other.data)) {} // Move constructor from C++ 17 || 
-    // IntArray first, second ; first = std::move(second); => moves second object to first object
+            //IntArray(int size) : data(new int[size]), size(size) {} //? assigment "=" operator causes recursions inside coppy constructor => runtume error
+            
+           //IntArray(IntArray&& other) : data(std::move(other.data)) {} // Move constructor from C++ 17 || IntArray first, second ; first = std::move(second); => moves second object to first object
 
-	~IntArray() { delete[] this->data; } 
+            ~IntArray() {
+                delete[] this->data;
+            }
 
-    // NOTE: this syntax disables copy-constructing and copy-assigning objects of the class - it is intentional, because otherwise this class will have issues with memory when such copies are done
-	IntArray(const IntArray& other) = delete; // C++ 17
-	IntArray& operator=(const IntArray& other) = delete; // C++ 17
+            int getSize() const {
+                return this->size;
+            }
+
+            int& operator[](const int index) const {
+                return this->data[index];
+            }
+
+            // NOTE: this syntax disables copy-constructing and copy-assigning objects of the class - it is intentional, because otherwise this class will have issues with memory when such copies are done
+            IntArray(const IntArray& other) = delete;
+            IntArray& operator=(const IntArray& other) = delete;
 };
 
 enum class LogTarget {
@@ -42,7 +52,7 @@ public:
     Singleton(Singleton &&other) = delete; // move constructor disalbled
     Singleton& operator=(const Singleton &other) = delete; // copy assignment operator disabled
     Singleton& operator=(Singleton &&other) = delete; // move assignment operator disabled
-    void Singleton::print(const std::string &data, LogTarget target); // print function says where the info will be sent
+    void print(const std::string &data, LogTarget target); // print function says where the info will be sent
 private:
     Singleton();
     ~Singleton() = default;
@@ -67,10 +77,25 @@ private:
     }
 
 
+    //! Smart pointers 
+
+    //? Shared pointer
+
+    std::shared_ptr<int> data; /* => to avoid memomey managment problems => data(... , default_delete<int[]>()) ||  data(....[](int*p){delete[] p;})
+    */
+
     //! Templates => Simple & SWAP function : int||char||bool||double
     template<typename T>
     T calcPercentage(const T& a, const T& b) {
         return (a * 100) / b;
+    }
+
+    template <typename T>
+    void writeResultToFile(const std::string& filePath, const T& result) {
+        std::ofstream fileStream(filePath.c_str(), std::ios::app);
+        if (!fileStream.good()) {
+        std::cerr << "Error opening file: " << filePath << std::endl;
+        return; }
     }
 
     template<typename T1, typename T2> 
@@ -90,6 +115,15 @@ private:
         a = b;
         b = aBeforeSwap;
     }
+    
+    template<typename Container>
+    void print(Container container) {
+    typename Container::iterator i;
+        for (i = container.begin(); i != container.end(); i++) {
+            std::cout << *i << " ";
+        }
+        std::cout << std::endl;
+    }
 
     //! Templates class
     template<typename T1, typename T2>
@@ -103,6 +137,7 @@ private:
         std::cout.setf(std::ios::fixed);
         std::cout.precision(2);
     }
+    
 
     extern bool externalBool; //? says to compiler that somewhere it will have a variable named externalBool but it is not defined here
     void iotaPredicat();
@@ -115,9 +150,11 @@ private:
     void arrayS() ;//! Arrays
     void someStrings();//!Some rear strings
     void letterOrNumber();//!checks if letter or number
+    void conversions(); //! conversts some stuffs
     
 int main(){
     
+    void conversions();
     void iotaPredicat();
     void referencesAndConst(); // References and Const
     void numberExtractions(); // arithmetics with digits
@@ -130,7 +167,7 @@ int main(){
     
 
 int a = 3 , b = 7;
-Swap(a,b ) ; //! Template SWAP function
+//Swap(a,b ) ; //! Template SWAP function
 
     return 0;
 }
@@ -167,9 +204,9 @@ void referencesAndConst(){
     ptr = &b; // points to b
 //!dereferencing
     a = 42; 
-    int* ptr = &a;
-    *ptr = 7; // a is now 7
-    std::cout << *ptr; // prints 7
+    int* ptr2 = &a;
+    *ptr2 = 7; // a is now 7
+    std::cout << *ptr2; // prints 7
 }
 
 
@@ -265,9 +302,7 @@ void someStrings(){
 
     char * result = strstr(line1, "world!"); //  points to first found letter from line1 that is equal to "world!"
 
-    const int index = result - line1;
-
-    std::cout << "world found at index: " << index << std::endl;
+    //int idx = (result - line1); //   std::cout << "world found at index: " << index << std::endl;
 
     *result = 'D'; // Dorld! instead of World! becouse points the first found letter from the string
     std::cout << result << std::endl;
@@ -301,4 +336,39 @@ void iotaPredicat(){
 
 	for(int i = 0; i < size; i++)std::cout << sequence[i] << " "; // result : 5 6 7 8 9 10 11
 	
+}
+
+void conversions(){
+
+    // Int to String
+    int a = 10;
+    std::stringstream ss;
+    ss << a;
+    std::string str = ss.str();
+
+    int b = 10;
+    std::string str2 = std::to_string(b);
+
+    // Char to String
+    const char ch = 'A';
+    
+    std::string appendedString;
+    appendedString.append(1, ch);
+
+    std::string s3(1, ch);
+
+
+    // Double to String
+    double d = 238649.21316934;
+    std::string s4 = std::to_string(d);
+
+    std::string str = "123.4567";
+
+    // convert string to float
+    float num_float = std::stof(str);
+
+    // convert string to double
+    double num_double = std::stod(str);
+
+
 }
