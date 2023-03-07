@@ -8,6 +8,9 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                //"${workspaceFolder}/ContactManagerUI.cpp",
+                //"${workspaceFolder}/EchoMain.cpp",
+                //"${workspaceFolder}/EmailContact.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

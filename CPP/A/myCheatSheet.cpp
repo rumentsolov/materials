@@ -1,8 +1,14 @@
 #include "libs.h"
 
-//! things I often forgot about...
 
+//! things I can forgot about...
 
+    void defiNing(){
+    #define HALF(value) value/2
+    std:: cout<<HALF(4+2) << std::endl; // prints 5
+    #undef  HALF
+    }
+   
 	class IntArray {
 	int* data;
 	int size;
@@ -14,7 +20,8 @@
     //? assigment "=" operator causes recursions inside coppy constructor => runtume error
 	IntArray(int size) : data(new int[size]), size(size) {}
 
-    IntArray(IntArray&& other) : data(std::move(other.data)) {} // Move constructor from C++ 17
+    IntArray(IntArray&& other) : data(std::move(other.data)) {} // Move constructor from C++ 17 || 
+    // IntArray first, second ; first = std::move(second); => moves second object to first object
 
 	~IntArray() { delete[] this->data; } 
 
@@ -23,21 +30,83 @@
 	IntArray& operator=(const IntArray& other) = delete; // C++ 17
 };
 
+enum class LogTarget {
+  STDOUT,
+  FILE
+};
+
+class Singleton {
+public:
+    static Singleton& getInstance() { static Singleton app; return app; } // Creates an instance of Singleton
+    Singleton(const Singleton &other) = delete; // copy constructor disabled
+    Singleton(Singleton &&other) = delete; // move constructor disalbled
+    Singleton& operator=(const Singleton &other) = delete; // copy assignment operator disabled
+    Singleton& operator=(Singleton &&other) = delete; // move assignment operator disabled
+    void Singleton::print(const std::string &data, LogTarget target); // print function says where the info will be sent
+private:
+    Singleton();
+    ~Singleton() = default;
+    std::ofstream _outFile; // used for main app class usually so output will be nessesary
+};
+    void Singleton::print(const std::string &data, LogTarget target) {
+    if (LogTarget::STDOUT == target) { std::cout << data << std::endl; return; }
+    _outFile << data << std::endl;;
+    }
 
 
-    //! Template SWAP function : int||char||bool||double
+    void moveOperators() {
+        std::unique_ptr<int> first(new int(42));
+        std::unique_ptr<int> second(new int(64));
+
+        //  first = second; => compilation error
+        first = std::move(second);  std::cout << *first << std::endl;
+
+        std::vector<std::unique_ptr<int>> pointers;
+        //  pointers.push_back(first); => compilation error
+        pointers.push_back(std::move(first)); std::cout << *pointers.back();
+    }
+
+
+    //! Templates => Simple & SWAP function : int||char||bool||double
     template<typename T>
-    void Swap(T& a, T& b ) {
-    T temp = a;
-    a = b;
-    b - temp; }
+    T calcPercentage(const T& a, const T& b) {
+        return (a * 100) / b;
+    }
+
+    template<typename T1, typename T2> 
+    std::string concatValues(const T1& a, const T2& b) {
+        std::ostringstream out;
+        out << a << b;
+        return out.str();
+    }
+
+    template<typename T1, typename T2> void printValues(const T1& a, const T2& b) {
+        std::cout << concatValues(a, b) << std::endl;
+    }
+
+    template<typename T>
+    void swapValues(T& a, T& b) {
+        T aBeforeSwap = a;
+        a = b;
+        b = aBeforeSwap;
+    }
+
+    //! Templates class
+    template<typename T1, typename T2>
+    class Pair {
+    public:
+    T1 first; T2 second;
+    Pair(T1 first, T2 second) : first(first),  second(second) {}
+    };
 
     void cout_precision(){
         std::cout.setf(std::ios::fixed);
         std::cout.precision(2);
     }
 
-    void getNegativePtr(); //! NULL pointer
+    extern bool externalBool; //? says to compiler that somewhere it will have a variable named externalBool but it is not defined here
+    void iotaPredicat();
+    void getNegativePtr(); //! NULL pointer 
     int* findFirstNegativePtr(int numbers[], int length);//! NULL pointer;
     void referencesAndConst();
     void numberExtractions();
@@ -48,7 +117,8 @@
     void letterOrNumber();//!checks if letter or number
     
 int main(){
-
+    
+    void iotaPredicat();
     void referencesAndConst(); // References and Const
     void numberExtractions(); // arithmetics with digits
     void files(); // Work with FILES
@@ -219,4 +289,16 @@ void letterOrNumber(){
 
         output << x;    
     }
+}
+
+#include <numeric>
+
+void iotaPredicat(){
+
+	int startNumber = 5 , size = 7;
+	std::vector<int> sequence(size) ;
+	std::iota(sequence.begin(), sequence.end(),startNumber);
+
+	for(int i = 0; i < size; i++)std::cout << sequence[i] << " "; // result : 5 6 7 8 9 10 11
+	
 }

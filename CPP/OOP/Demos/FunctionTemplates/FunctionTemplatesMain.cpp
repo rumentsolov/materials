@@ -9,7 +9,8 @@ T calcPercentage(const T& a, const T& b) {
 	return (a * 100) / b;
 }
 
-template<typename T1, typename T2> std::string concatValues(const T1& a, const T2& b) {
+template<typename T1, typename T2> 
+std::string concatValues(const T1& a, const T2& b) {
 	std::ostringstream out;
 	out << a << b;
 	return out.str();
