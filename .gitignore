@@ -1,1 +1,2 @@
-A.
+$ cat .gitignore
+CPP/A.CheatSheets/*
