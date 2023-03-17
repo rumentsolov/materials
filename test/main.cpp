@@ -1,19 +1,23 @@
-#include "publics.h"
+#include <iostream>
+#include "vector"
+#include <string>
+
 
 int main() {
-	
-	ppmFS << "P3\n";
-	ppmFS << imageWidth << " " << imageHeight << "\n";
-	ppmFS << maxColorComponent << "\n";
 
-	for (int rowIdx = 0; rowIdx < imageHeight; ++rowIdx) {
-		for (int colIdx = 0; colIdx < imageWidth; ++colIdx) {
-			ppmFS << "0 0 255\t";
-		}
-		ppmFS << "\n";
-	}
+	std::string str ("Test string that is too long");
+	std::cout << "size: " << str.size() << "\n";
+	std::cout << "length: " << str.length() << "\n";
+	std::cout << "capacity: " << str.capacity() << "\n";
+	std::cout << "max_size: " << str.max_size() << "\n";
 
-	ppmFS.close();
+	std::vector<std::string> newVecStr;
+	std::vector<int> newVectorI;
+
+	std::cout<<newVecStr.size()<<std::endl;
+	std::cout<<newVectorI.size()<<std::endl;
+
+
 
 	return 0;
 }
