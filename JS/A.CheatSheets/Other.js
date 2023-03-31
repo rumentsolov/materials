@@ -153,3 +153,4 @@ document.addEventListener("keypress", function (event) {  // function here is an
 // npm init => initializes package.json file , when we install external modules theywill appear inside that package
 
 // npm install extpress => will install Express JS in the folder I am in
+// nodeamon file.js // will start my server
