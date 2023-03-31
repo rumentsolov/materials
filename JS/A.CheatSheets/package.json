@@ -1,0 +1,11 @@
+{
+  "name": "a.cheatsheets",
+  "version": "1.0.0",
+  "description": "some tests I am making since I am learning JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RumenTsolov",
+  "license": "ISC"
+}
