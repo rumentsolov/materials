@@ -154,3 +154,12 @@ document.addEventListener("keypress", function (event) {  // function here is an
 
 // npm install extpress => will install Express JS in the folder I am in
 // nodeamon file.js // will start my server
+
+//! Errors
+/*
+100 hold on
+200 its ok
+300 go away security involved
+400 you fucked up, client fucked up
+500 I fucked up
+*/
