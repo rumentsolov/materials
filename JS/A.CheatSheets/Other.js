@@ -153,6 +153,7 @@ document.addEventListener("keypress", function (event) {  // function here is an
 // npm init => initializes package.json file , when we install external modules theywill appear inside that package
 
 // npm install extpress => will install Express JS in the folder I am in
+// sudo npm install -g nodemon // for installation of nodeamon
 // nodeamon file.js // will start my server
 
 //! Errors
@@ -162,4 +163,16 @@ document.addEventListener("keypress", function (event) {  // function here is an
 300 go away security involved
 400 you fucked up, client fucked up
 500 I fucked up
+
+API
+
+Application Programing Interface
+
+Endpoint => url that make a request to API's server and they provide you back data || its like the main branch
+Path => sub branches that holds the endpoint and more
+Paramethers => end of url starting with ? /usually "..?contains..&someOtherParameter/
+Authentication => 
+
+
+
 */

@@ -1,0 +1,31 @@
+git init // => initializes the repository in current working directory
+git status // => shows tracked or untracked files
+git add file.txt // => adds the file to track the status of the files
+git add . // => adds the whole dir files
+git commit-m "message" // => commits the new verision || -m is for message and is must
+git log // => shows the commits have been made , also there is hash "0192ujw9e-8n-283u" unique for every commit
+git rm --cached -r . // => untracks the whole dir of files from the local repository
+git diff chapter3.txt // => shows the difference between the old and new file
+git checkout chapter3.txt // => reverts to the previous version of commitment
+//---------------------//
+git remote add origin https://hithub.com/repository/Story.git => creating a remote that tells my local git repository that there is remote repository somewhere || origin is simply the name of my remote but is highly recommended to be orrigin
+git push -u origin master // => pushes your local repo to github repo with -u ( means both are linked ) , master is the name of the branch || master branch is the main branch
+
+//! git ignore // inside github there is repository gitignore
+#Comment 1
+touch .gitignore
+open .gitignore
+*.txt //=> will ignore all my txt files
+
+git branch // => shows you the created branches || * infront of the branch name shows you the active branch
+git branch newBranch // => creates new branch locally
+git commit newBranch // => will wsitch to the branch named newBranch
+git merge newBranch // => merges the master branch with newBranch
+git push origin master -u// => pushes everything after the merge to master branch
+
+//!Fork repositories => 
+// copy repo to his own github then he could clone it to his local computer and work on the copy
+// then when he is ready he pushes to his repository
+// then she is making pull request to modify my original repository with her changes
+
+

@@ -13,6 +13,8 @@ app.get("/" , function(req,res){ // req -> request && res -> response
     
 }); // specify what should happen when a brouser get intouch with our server and makes a get request to our server
 
+
+
 app.post("/" , function(req,res){  // our server allows to processing any post requests
     console.log(req.body); // body parses provides us to access the req.body (body is the whole object) and other properties of object body
     //res.send("<h1>Some action needed</h1>");
