@@ -1,5 +1,127 @@
-<!--
-assets => vodeo
-browser dev tools => 
+<!-- URL uniform resource locator
+Scheme => the protocol that have to be used to request the resource from the server (like https => HyperTexT Protocol Safe)  || it can be mailto:www.exampleMail.com
+Domain Name => the name of the website , after it the port can beadded
+port:80 is the http protocol 
+port 442 is the https protocol
+Path => after the port /path/somefolder/some.html
+Parameters => after ? like ?key1=value1&key2=value2&key3=value3 => additional parameters that will be sent to the server
+Anchors => #SomewherelnTheDocument => local anchor link
+
 -->
 
+
+<head>
+<title>Find the full cast list</title> <!-- Showen in the browser bar -->
+<link rel="stylesheet" type="text/css" href=" "> <!-- "stylesheet" means we link css file ; type means the file is in type text/css -->
+<script></script> <!-- adding js script locally -->
+<script src="file.js"></script> <!-- adding js file -->
+<meta charset="utf-8"> <!--describes the charset of html-->
+</head>
+<!--
+Semantics vs Structure
+div, a , span are not semantically ellements
+-->
+<body>
+<!--
+main tag can be only one element
+section tag holds elements that have common attributes
+site tag holds elements that are in left or right side
+footer tag holds elements that are -->
+<details> </details> <!-- for elements that can be opneded -->
+<summary> </summary> <!-- used in details only and means the <details> summary (the text that is shown in the main unopenede text box) -->
+<time> </time><!-- shows some time, we could say 8:00 browser knows that this is time -->
+<address> </address><!-- when we want to place addresses or some contatcs and to be avalable to be searched from Searching engines -->
+
+
+<!--Multimedia elements: -->
+
+<audio controls> <!-- controls is attribute to audio -->
+    <source type="audio/mp3" src="file.mp3">
+</audio>
+
+<video controls> <!-- controls is attribute to audio -->
+    <source type="video/mp4" src="file.mp4">
+</video>
+
+<!-- Tables -->
+
+<table>
+    <thead> <!-- head og the table where the names of columns are standing-->
+        <tr></tr> <!-- table head row -->
+        <th></th> <!-- table head colums that stands in rows usually -->
+    </thead>
+
+    <tbody><!-- the rows and columns-->
+        <tr></tr> <!-- table row -->
+        <td></td> <!-- table colums that stands in rows usually -->
+    </tbody> 
+
+    <tfoot> <!-- information like calculations and Total values -->
+        <tr></tr> <!-- table row -->
+        <td colspan ="2"></td> <!-- table colums that stands in rows usually ; colspan="2" means that this one takes 2 horizontal boxes-->
+    </tfoot> 
+</table>
+
+<!-- Entities -> special symbols that are represented as special code inside our html file-->
+<p>
+    Here is &lt;tfoot&gt;  <!-- &lt; and &gt; are Entities that replace < and > and shows the code between ; will be shown on the screen betwen < and > -->
+</p>
+
+</body>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            }
+            th {font-weight: bold;}
+        </style>
+    </head>
+
+    <body>
+        <table>
+            <thead> 
+                <tr>
+                    <th>name</th>
+                    <th>sound</th>
+                    <th>lifespan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cat</td>
+                    <td>meow</td>
+                    <td>12-18</td>
+                </tr>
+                <tr>
+                    <td>dog</td>
+                    <td>woof</td>
+                    <td>10-13</td>
+                </tr>
+                <tr>
+                    <td>mouse</td>
+                    <td>squeak</td>
+                    <td>1-2</td>
+                </tr>
+                <tr>
+                    <td>cow</td>
+                    <td>mooo</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>pigeon</td>
+                    <td>coo</td>
+                    <td>6</td>
+                </tr> 
+                <tr>
+                    <td>snake</td>
+                    <td>hss</td>
+                    <td>20-30</td>
+                </tr>
+            </tbody> 
+        </table>
+    </body>
+</html>
