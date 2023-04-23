@@ -2,7 +2,7 @@ const express = require("express"); // the first step is to require ExpressJS
 const bodyParser = require("body-parser"); // requires body parses to be able to get info from website
 
 const app = express(); // function that represent the Express module
-app.use(bodyParser.urlencoded({extended:true})); // out app uses body parser from now on || bodyParser.text() returns text || bodyParser.json() returns json || "extended:true" allows us to post nested objects
+app.use(bodyParser.urlencoded({extended:true})); // out app uses body parser from` now on || bodyParser.text() returns text || bodyParser.json() returns json || "extended:true" allows us to post nested objects
 
 
 app.get("/" , function(req,res){ // req -> request && res -> response
