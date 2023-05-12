@@ -64,6 +64,11 @@
         //Casting
         $int_cast = intval("2345.123");
         echo $int_cast;// result = 2345
+
+        echo(rand(10, 100)); // randoms number betwen 10 and 100
+
+        //Constants
+        define("Speed_of_Light",299 792 458 , true); // echo Speed_of_light; true means that is Case Sensitive is disabled
         ?>
 
         
